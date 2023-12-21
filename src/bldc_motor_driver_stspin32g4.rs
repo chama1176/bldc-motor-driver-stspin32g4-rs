@@ -21,6 +21,14 @@ use motml::motor_driver::ThreePhaseValue;
 use motml::motor_driver::ThreePhaseVoltage;
 use motml::utils::Deg;
 
+
+
+#[repr(C)]
+union UnionFlashMemory {
+    f1: [u32; 7],
+    f2: f32,
+}
+
 pub fn clock_init(perip: &Peripherals, core_perip: &mut CorePeripherals) {
     perip.RCC.cr.modify(|_, w| w.hsebyp().bypassed());
     perip.RCC.cr.modify(|_, w| w.hseon().on());
